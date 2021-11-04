@@ -47,8 +47,8 @@ class DOCXReader(Reader):
         dataList = cls.__getData(folder)
         docxList = []
         for data in dataList:
-            pdf = DOCX(data.core_properties, cls.__getDocxText(data))
-            docxList.append(pdf)
+            doc = DOCX(data.core_properties, cls.__getDocxText(data))
+            docxList.append(doc)
         return docxList
 
     @staticmethod
