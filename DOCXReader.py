@@ -1,6 +1,6 @@
 import docx
 import glob
-from Reader.Reader import FileObj
+from Reader.Reader import FileObj, Reader
 
 
 class DOCX(FileObj):
@@ -27,7 +27,7 @@ class DOCX(FileObj):
         return self.content
 
 
-class DOCXReader:
+class DOCXReader(Reader):
     @staticmethod
     def getDocxText(obj):
         docx_paras = obj.paragraphs
@@ -39,7 +39,7 @@ class DOCXReader:
     @classmethod
     def getData(cls, folder):
         fileList = glob.glob('{}/*.docx'.format(folder))
-        return (map(lambda filename: docx.Document(filename), fileList))
+        return list(map(lambda filename: docx.Document(filename), fileList))
 
     @classmethod
     def getDOCXList(cls, folder):
@@ -49,3 +49,11 @@ class DOCXReader:
             pdf = DOCX(data.core_properties, cls.getDocxText(data))
             docxList.append(pdf)
         return docxList
+
+    @staticmethod
+    def clean(lst):
+        try:
+            for doc in lst:
+                del doc
+        except:
+            print('Type Error')
