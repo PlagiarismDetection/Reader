@@ -30,7 +30,7 @@ class DOCX(FileObj):
 
 class DOCXReader(Reader):
     @staticmethod
-    def getDocxText(obj):
+    def __getDocxText(obj):
         docx_paras = obj.paragraphs
         full = []
         for para in docx_paras:
@@ -38,16 +38,16 @@ class DOCXReader(Reader):
         return '\n'.join(full)
 
     @classmethod
-    def getData(cls, folder):
+    def __getData(cls, folder):
         fileList = glob.glob('{}/*.docx'.format(folder))
         return list(map(lambda filename: docx.Document(filename), fileList))
 
     @classmethod
     def getDOCXList(cls, folder):
-        dataList = cls.getData(folder)
+        dataList = cls.__getData(folder)
         docxList = []
         for data in dataList:
-            pdf = DOCX(data.core_properties, cls.getDocxText(data))
+            pdf = DOCX(data.core_properties, cls.__getDocxText(data))
             docxList.append(pdf)
         return docxList
 

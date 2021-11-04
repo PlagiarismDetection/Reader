@@ -34,13 +34,13 @@ class PDF(FileObj):
 
 class PDFReader(Reader):
     @staticmethod
-    def getData(folder):
+    def __getData(folder):
         fileList = glob.glob('{}/*.pdf'.format(folder))
         return list(map(lambda file: parser.from_file(file), fileList))
 
     @classmethod
     def getPDFList(cls, folder):
-        dataList = cls.getData(folder)
+        dataList = cls.__getData(folder)
         pdfList = []
         for data in dataList:
             pdf = PDF(data['metadata'], data['content'])
