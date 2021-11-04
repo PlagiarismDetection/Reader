@@ -1,5 +1,4 @@
 from tika import parser
-from abc import ABC
 import glob
 from Reader.Reader import FileObj, Reader
 
