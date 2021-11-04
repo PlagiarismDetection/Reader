@@ -6,6 +6,7 @@ from Reader.Reader import FileObj, Reader
 
 class PDF(FileObj):
     def __init__(self, metadata, content):
+        super().__init__()
         self.content_type = metadata['Content-Type'] if 'Content-Type' in metadata.keys() else ''
         self.title = metadata['resourceName'] if 'resourceName' in metadata.keys(
         ) else ''
@@ -39,7 +40,6 @@ class PDFReader(Reader):
 
     @classmethod
     def getPDFList(cls, folder):
-        fileList = glob.glob('{}/*.pdf'.format(folder))
         dataList = cls.getData(folder)
         pdfList = []
         for data in dataList:

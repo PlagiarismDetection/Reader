@@ -5,6 +5,7 @@ from Reader.Reader import FileObj, Reader
 
 class DOCX(FileObj):
     def __init__(self, metadata, content):
+        super().__init__()
         self.content_type = 'docx'
         self.title = metadata.title
         self.author = metadata.author
