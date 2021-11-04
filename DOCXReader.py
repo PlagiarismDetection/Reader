@@ -1,9 +1,9 @@
 import docx
 import glob
-from abc import ABC
+from Reader.Reader import FileObj
 
 
-class DOCX(ABC):
+class DOCX(FileObj):
     def __init__(self, metadata, content):
         self.content_type = 'docx'
         self.title = metadata.title
@@ -11,11 +11,17 @@ class DOCX(ABC):
         self.creation_date = metadata.created
         self.content = content
 
+    def getType(self):
+        return self.content_type
+
     def getTitle(self):
         return self.title
 
     def getAuthor(self):
         return self.author
+
+    def getDate(self):
+        return self.creation_date
 
     def getContent(self):
         return self.content

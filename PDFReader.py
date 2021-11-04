@@ -1,9 +1,9 @@
+from Reader.Reader import FileObj
 from tika import parser
-from abc import ABC
 import glob
 
 
-class PDF(ABC):
+class PDF(FileObj):
     def __init__(self, metadata, content):
         self.content_type = metadata['Content-Type'] if 'Content-Type' in metadata.keys() else ''
         self.title = metadata['resourceName'] if 'resourceName' in metadata.keys(
@@ -14,11 +14,17 @@ class PDF(ABC):
         ) else ''
         self.content = content
 
+    def getType(self):
+        return self.content_type
+
     def getTitle(self):
         return self.title
 
     def getAuthor(self):
         return self.author
+
+    def getDate(self):
+        return self.creation_date
 
     def getContent(self):
         return self.content

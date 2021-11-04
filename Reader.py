@@ -1,12 +1,26 @@
 from abc import ABC
 
 
-class Reader(ABC):
+class FileObj(ABC):
     def __init__(self):
         pass
 
-    def getData(self):
+    def getType(self):
         pass
 
-    def getNumFile(self):
+    def getTitle(self):
+        pass
+
+    def getAuthor(self):
+        pass
+
+    def getDate(self):
+        pass
+
+    def getContent(self):
+        pass
+
+
+class Reader(ABC):
+    def __init__(self):
         pass
